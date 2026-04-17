@@ -9,7 +9,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6.0.2
     
     - name: 环境变量配置
       run: |
@@ -65,7 +65,7 @@ jobs:
         fi
 
     - name: 设置ccache缓存
-      uses: hendrikmuhs/ccache-action@v1.2
+      uses: hendrikmuhs/ccache-action@v1.2.22
       with:
         key: build-kernel-mido-kernel
         max-size: 2G
@@ -94,7 +94,7 @@ jobs:
     
     
     - name: 打包并上传
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7.0.1
       with:
         name: ${{ env.KERNEL_ZIP_NAME }}
         path: kernel_workspace/AnyKernel3/*
