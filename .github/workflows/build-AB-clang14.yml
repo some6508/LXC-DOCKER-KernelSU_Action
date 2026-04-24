@@ -50,7 +50,7 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace
         wget https://github.com/ego-taboo/LXC-DOCKER-KernelSU_Action/releases/download/2.0.0/add-lxc-docker-custom3.sh
         chmod 755 add-lxc-docker-custom3.sh
-        sed -i -e '$a\' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo "\n" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         ./add-lxc-docker-custom3.sh android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
 
@@ -76,7 +76,6 @@ jobs:
       if: env.ENABLE_KVM == 'true'
       run: |
          cd $GITHUB_WORKSPACE/kernel_workspace
-         sed -i -e '$a\' android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
          echo "CONFIG_VIRTUALIZATION=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
          echo "CONFIG_KVM=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
          echo "CONFIG_VHOST_NET=y" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
