@@ -50,7 +50,6 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace
         wget https://github.com/ego-taboo/LXC-DOCKER-KernelSU_Action/releases/download/2.0.0/add-lxc-docker-custom3.sh
         chmod 755 add-lxc-docker-custom3.sh
-        echo "\n" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         ./add-lxc-docker-custom3.sh android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> android-kernel/arch/arm64/configs/${{ env.KERNEL_CONFIG }}
 
@@ -90,7 +89,7 @@ jobs:
     - name: 开始编译内核
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        echo "\n" >> arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+        echo >> arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         cat  arch/arm64/configs/${{ env.KERNEL_CONFIG }}
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/clang-r450784d/bin:$PATH        
         make -j$(nproc --all) O=out ARCH=arm64 ${{ env.KERNEL_CONFIG }}
