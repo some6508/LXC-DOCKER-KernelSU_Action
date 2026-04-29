@@ -50,9 +50,11 @@ jobs:
       - name: 开启lxc和docker配置
         run: |
           cd ~/kernel
-          wget https://github.com/ego-taboo/LXC-DOCKER-KernelSU_Action/releases/download/2.0.0/add-lxc-docker-custom3.sh
-          chmod 755 add-lxc-docker-custom3.sh
-          ./add-lxc-docker-custom3.sh ~/kernel/arch/arm64/configs/vendor/kona-perf_defconfig
+          wget https://github.com/ego-taboo/LXC-DOCKER-KernelSU_Action/releases/download/2.0.0/lxc-docker-config3.txt
+          aa=$(cat lxc-docker-config3.txt)
+          for i in $aa; do
+            echo $i >> ~/kernel/arch/arm64/configs/vendor/kona-perf_defconfig
+          done
           echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> ~/kernel/arch/arm64/configs/vendor/kona-perf_defconfig
 
       - name: 添加runc补丁
