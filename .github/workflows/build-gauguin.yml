@@ -144,7 +144,7 @@ jobs:
           
           # Remove git files and create zip
           rm -rf .git
-          ZIP_NAME="SukiSUItra-Kernel-gauguin-$(date +%Y%m%d-%H%M).zip"
+          ZIP_NAME="SukiSUUltra-Kernel-gauguin-$(date +%Y%m%d-%H%M).zip"
           zip -r9 ../$ZIP_NAME * -x README.md LICENSE
           
           echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
@@ -154,8 +154,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: SukiSUItra-Kernel-Flashable
-          path: SukiSUItra-Kernel-*.zip
+          name: SukiSUUltra-Kernel-Flashable
+          path: SukiSUUltra-Kernel-*.zip
 
       - name: 上传编译日志
         uses: actions/upload-artifact@v4
@@ -179,8 +179,8 @@ jobs:
             tail -30 ${{ github.workspace }}/kernel/build.log
           fi
           
-          if [ -f SukiSUItra-Kernel-*.zip ]; then
+          if [ -f SukiSUUltra-Kernel-*.zip ]; then
             echo ""
             echo "📦 刷机文件: ${{ env.ZIP_NAME }}"
-            ls -lh SukiSUItra-Kernel-*.zip
+            ls -lh SukiSUUltra-Kernel-*.zip
           fi
